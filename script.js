@@ -1,49 +1,106 @@
-// Wedding countdown: 30 November 2026, 00:00 India time.
+
+/* =====================================
+   ARPITA & RUPESH WEDDING WEBSITE
+===================================== */
+
+// 1. Wedding countdown
 const weddingDate = new Date("2026-11-30T00:00:00+05:30").getTime();
-const fields = {
-  days: document.getElementById("days"),
-  hours: document.getElementById("hours"),
-  minutes: document.getElementById("minutes"),
-  seconds: document.getElementById("seconds")
-};
+
 function updateCountdown() {
-  const remaining = weddingDate - Date.now();
-  if (remaining <= 0) {
-    Object.values(fields).forEach(el => { if (el) el.textContent = "00"; });
+  const now = Date.now();
+  const distance = weddingDate - now;
+
+  const days = document.getElementById("days");
+  const hours = document.getElementById("hours");
+  const minutes = document.getElementById("minutes");
+  const seconds = document.getElementById("seconds");
+
+  if (!days || !hours || !minutes || !seconds) return;
+
+  if (distance <= 0) {
+    days.textContent = "00";
+    hours.textContent = "00";
+    minutes.textContent = "00";
+    seconds.textContent = "00";
     return;
   }
-  const values = {
-    days: Math.floor(remaining / 86400000),
-    hours: Math.floor((remaining % 86400000) / 3600000),
-    minutes: Math.floor((remaining % 3600000) / 60000),
-    seconds: Math.floor((remaining % 60000) / 1000)
-  };
-  Object.entries(values).forEach(([key, value]) => {
-    if (fields[key]) fields[key].textContent = String(value).padStart(2, "0");
-  });
+
+  days.textContent = String(
+    Math.floor(distance / (1000 * 60 * 60 * 24))
+  ).padStart(2, "0");
+
+  hours.textContent = String(
+    Math.floor((distance / (1000 * 60 * 60)) % 24)
+  ).padStart(2, "0");
+
+  minutes.textContent = String(
+    Math.floor((distance / (1000 * 60)) % 60)
+  ).padStart(2, "0");
+
+  seconds.textContent = String(
+    Math.floor((distance / 1000) % 60)
+  ).padStart(2, "0");
 }
+
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// Gentle reveal-on-scroll animation.
-const revealItems = document.querySelectorAll(".reveal");
+
+// 2. Smooth section navigation
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener("click", function (event) {
+    const targetId = this.getAttribute("href");
+    const target = document.querySelector(targetId);
+
+    if (!target) return;
+
+    event.preventDefault();
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  });
+});
+
+
+// 3. Reveal animations on scroll
+const revealElements = document.querySelectorAll(".reveal");
+
 if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(entries => {
+  const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
+        obs.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
-  revealItems.forEach(item => observer.observe(item));
+  }, {
+    threshold: 0.12
+  });
+
+  revealElements.forEach(element => {
+    observer.observe(element);
+  });
 } else {
-  revealItems.forEach(item => item.classList.add("visible"));
+  revealElements.forEach(element => {
+    element.classList.add("visible");
+  });
 }
 
-// Back-to-top control.
+
+// 4. Back to top button
 const backTop = document.getElementById("backTop");
-window.addEventListener("scroll", () => {
-  backTop.classList.toggle("visible", window.scrollY > 500);
-}, { passive: true });
-backTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+if (backTop) {
+  window.addEventListener("scroll", () => {
+    backTop.classList.toggle("show", window.scrollY > 500);
+  });
+
+  backTop.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+}
