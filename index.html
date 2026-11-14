@@ -1,0 +1,738 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#641b2b">
+<title>शुभ विवाह — अर्पिता संग रूपेश</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Yatra+One&family=Noto+Serif+Devanagari:wght@400;500;600;700;800&display=swap');
+
+:root {
+ --wine:#641b2b;
+ --deep:#3d101b;
+ --gold:#bd9146;
+ --cream:#fff9ed;
+ --ink:#39231e;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+ margin:0;
+ background:#f5ead8;
+ color:var(--ink);
+ font-family:'Noto Serif Devanagari',serif;
+}
+
+body:before{
+ content:"";
+ position:fixed;
+ inset:0;
+ pointer-events:none;
+ opacity:.12;
+ background-image:radial-gradient(#a77c3b .7px,transparent .7px);
+ background-size:13px 13px;
+ z-index:-1;
+}
+
+.hero{
+ min-height:100svh;
+ display:grid;
+ place-items:center;
+ padding:28px 16px;
+ background:radial-gradient(ellipse at center,#fffdf7 0,#f8eedc 65%,#e8d4b5 100%);
+ position:relative;
+ overflow:hidden;
+}
+
+.hero:before,.hero:after{
+ content:"❧";
+ position:absolute;
+ color:#b98c48;
+ font-size:clamp(100px,22vw,240px);
+ opacity:.18;
+ top:4%;
+ left:2%;
+ transform:rotate(-25deg);
+}
+
+.hero:after{
+ left:auto;
+ right:2%;
+ top:auto;
+ bottom:0;
+ transform:rotate(155deg);
+}
+
+.frame{
+ width:min(100%,760px);
+ border:1px solid var(--gold);
+ outline:5px double #c5a46a;
+ outline-offset:7px;
+ padding:clamp(26px,6vw,58px) clamp(18px,7vw,70px);
+ text-align:center;
+ position:relative;
+ background:rgba(255,252,244,.82);
+ box-shadow:0 18px 60px #5a35151c;
+}
+
+.frame:before,.frame:after{
+ content:"✥";
+ position:absolute;
+ color:var(--gold);
+ font-size:30px;
+}
+
+.frame:before{top:8px;left:12px}
+.frame:after{bottom:8px;right:12px}
+
+.mantra{
+ font-size:16px;
+ letter-spacing:1px;
+ color:var(--wine);
+ margin-bottom:22px;
+}
+
+.om{
+ font-size:40px;
+ color:var(--gold);
+}
+
+.eyebrow{
+ color:var(--wine);
+ font-size:14px;
+ letter-spacing:2px;
+ margin:14px 0 4px;
+}
+
+.names{
+ font-family:'Yatra One','Noto Serif Devanagari',serif;
+ font-size:clamp(38px,8vw,68px);
+ line-height:1.45;
+ color:var(--wine);
+ margin:8px 0;
+}
+
+.sang{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:16px;
+ color:var(--gold);
+ font-size:21px;
+ margin:0 auto;
+}
+
+.sang:before,.sang:after{
+ content:"";
+ width:65px;
+ height:1px;
+ background:var(--gold);
+}
+
+.date{
+ font-size:clamp(20px,4vw,28px);
+ font-weight:700;
+ margin:24px 0 6px;
+ color:var(--deep);
+}
+
+.weekday{font-size:16px;color:#765c45}
+
+.ornament{
+ color:var(--gold);
+ font-size:24px;
+ margin:20px;
+}
+
+.invite{
+ font-size:16px;
+ line-height:2;
+ margin:14px auto 0;
+ max-width:520px;
+}
+
+.scroll{
+ position:absolute;
+ bottom:18px;
+ font-size:12px;
+ color:#765c45;
+}
+
+section{padding:72px 18px}
+
+.wrap{
+ width:min(100%,1000px);
+ margin:auto;
+}
+
+.section-title{
+ text-align:center;
+ color:var(--wine);
+ font-size:clamp(26px,5vw,38px);
+ margin:0 0 10px;
+}
+
+.sub{
+ text-align:center;
+ color:#80694f;
+ margin:0 0 36px;
+ font-size:14px;
+}
+
+.card{
+ background:#fffaf0;
+ border:1px solid #d9bf8d;
+ box-shadow:0 12px 35px #5b32100d;
+ border-radius:4px;
+ padding:26px;
+}
+
+.couple{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:18px;
+}
+
+.person{
+ text-align:center;
+ padding:32px 20px;
+ background:linear-gradient(145deg,#fffdf7,#f7ead4);
+ border:1px solid #e2cda5;
+}
+
+.person .symbol{
+ font-size:38px;
+ color:var(--gold);
+}
+
+.person h3{
+ font-size:27px;
+ color:var(--wine);
+ margin:12px 0;
+}
+
+.person p{
+ font-size:14px;
+ line-height:1.9;
+}
+
+.timeline{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:16px;
+}
+
+.event{
+ border-top:3px solid var(--gold);
+ text-align:center;
+ padding:24px 16px;
+}
+
+.event .day{
+ color:var(--wine);
+ font-size:23px;
+ font-weight:700;
+}
+
+.event h3{font-size:23px;margin:8px 0}
+.event p{color:#78634e}
+
+.venue{
+ text-align:center;
+ line-height:2;
+}
+
+.venue .pin{
+ font-size:32px;
+ color:var(--gold);
+}
+
+.family{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:22px;
+}
+
+.family h3{
+ color:var(--wine);
+ margin:0 0 12px;
+}
+
+.family p{
+ line-height:1.9;
+ font-size:14px;
+}
+
+.count{
+ text-align:center;
+ background:var(--wine);
+ color:#fff4df;
+ padding:48px 20px;
+}
+
+.count h2{
+ margin:0 0 8px;
+ font-size:27px;
+}
+
+.count p{color:#e7d2ac}
+
+.timer{
+ display:flex;
+ justify-content:center;
+ gap:12px;
+ flex-wrap:wrap;
+ margin-top:22px;
+}
+
+.unit{
+ min-width:76px;
+ padding:13px 10px;
+ border:1px solid #c7a46c;
+}
+
+.unit b{
+ display:block;
+ font:700 28px 'DM Sans',sans-serif;
+}
+
+.unit span{
+ font-size:12px;
+ color:#e5c98f;
+}
+
+footer{
+ text-align:center;
+ padding:34px 16px;
+ background:#3d101b;
+ color:#e8d5b4;
+ font-size:13px;
+ line-height:1.9;
+}
+
+/* MUSIC BUTTON */
+
+.music-control{
+ position:fixed;
+ right:16px;
+ bottom:16px;
+ z-index:20;
+ display:flex;
+ align-items:center;
+ gap:10px;
+ background:#fffaf0;
+ border:1px solid #c6a46c;
+ border-radius:40px;
+ padding:7px 13px 7px 8px;
+ box-shadow:0 8px 25px #3d101b25;
+}
+
+.music-control button{
+ border:0;
+ border-radius:30px;
+ background:#641b2b;
+ color:#fff8e9;
+ padding:10px 15px;
+ font:600 13px 'Noto Serif Devanagari',serif;
+ display:flex;
+ align-items:center;
+ gap:8px;
+ cursor:pointer;
+}
+
+.music-control button span:first-child{
+ font-size:19px;
+}
+
+.music-note{
+ font-size:11px;
+ color:#765c45;
+ white-space:nowrap;
+}
+
+.music-player{
+ display:none;
+ position:fixed;
+ right:16px;
+ bottom:76px;
+ z-index:19;
+ width:min(calc(100vw - 32px),340px);
+ aspect-ratio:16/9;
+ background:#1b1012;
+ border:1px solid #c6a46c;
+}
+
+.music-player.open{display:block}
+
+.music-player iframe{
+ width:100%;
+ height:100%;
+ border:0;
+}
+
+@media(max-width:650px){
+ .couple,.timeline,.family{
+  grid-template-columns:1fr;
+ }
+ .hero{padding:25px 22px 55px}
+ .frame{padding:32px 18px}
+ .person{padding:24px 16px}
+ section{padding:54px 16px}
+}
+
+@media(max-width:420px){
+ .music-note{display:none}
+ .music-control{right:12px;bottom:12px}
+}
+
+@media(prefers-reduced-motion:no-preference){
+ .frame{animation:rise .9s ease both}
+ @keyframes rise{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+ }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MAIN INVITATION -->
+
+<header class="hero" id="home">
+ <div class="frame">
+
+  <div class="mantra">॥ श्री गणेशाय नमः ॥</div>
+  <div class="om">ॐ</div>
+
+  <div class="eyebrow">मंगल परिणय • स्नेहिल आमंत्रण</div>
+
+  <h1 class="names">
+   अर्पिता <span class="sang">संग</span> रूपेश
+  </h1>
+
+  <div class="ornament">❧ ✦ ❧</div>
+
+  <div class="eyebrow">शुभ विवाह</div>
+  <div class="date">30 नवम्बर 2026</div>
+  <div class="weekday">दिन — सोमवार</div>
+
+  <p class="invite">
+   परमपिता परमेश्वर की असीम कृपा एवं आप सभी के
+   स्नेहाशीष से हमारे परिवार में शुभ विवाह का मंगल
+   अवसर आया है। इस पावन अवसर पर आपकी
+   गरिमामयी उपस्थिति सादर प्रार्थनीय है।
+  </p>
+
+  <div class="ornament">॥ शुभमस्तु ॥</div>
+
+ </div>
+
+ <div class="scroll">आमंत्रण • नीचे पढ़ें ↓</div>
+</header>
+
+
+<!-- BRIDE AND GROOM -->
+
+<section>
+ <div class="wrap">
+
+  <h2 class="section-title">शुभ परिणय</h2>
+  <p class="sub">दो परिवारों का पावन मिलन</p>
+
+  <div class="couple">
+
+   <article class="person">
+    <div class="symbol">❀</div>
+    <div>वधू</div>
+    <h3>आयु० अर्पिता शर्मा</h3>
+
+    <p>
+     सुपुत्री<br>
+     श्रीमती किरण देवी एवं श्री राजेश शर्मा<br>
+     ग्राम — बेलवा दूबे, पोस्ट — बगही बाजार<br>
+     थाना — कटेया, जिला — गोपालगंज (बिहार)
+    </p>
+   </article>
+
+   <article class="person">
+    <div class="symbol">❀</div>
+    <div>वर</div>
+    <h3>चि० रूपेश शर्मा</h3>
+
+    <p>
+     सुपुत्र<br>
+     श्रीमती आरती देवी एवं श्री रामनरेश शर्मा<br>
+     ग्राम + पोस्ट — थावे<br>
+     जिला — गोपालगंज (बिहार)
+    </p>
+   </article>
+
+  </div>
+ </div>
+</section>
+
+
+<!-- WEDDING EVENTS -->
+
+<section style="background:#efe1ca">
+ <div class="wrap">
+
+  <h2 class="section-title">मांगलिक कार्यक्रम</h2>
+  <p class="sub">आप सपरिवार सादर आमंत्रित हैं</p>
+
+  <div class="card timeline">
+
+   <article class="event">
+    <div class="day">30 नवम्बर 2026</div>
+    <h3>कथा – मटकोर</h3>
+    <p>दिन — सोमवार</p>
+   </article>
+
+   <article class="event">
+    <div class="day">30 नवम्बर 2026</div>
+    <h3>शुभ विवाह</h3>
+    <p>दिन — सोमवार</p>
+   </article>
+
+   <article class="event">
+    <div class="day">1 दिसम्बर 2026</div>
+    <h3>मिलन व विदाई</h3>
+    <p>दिन — मंगलवार</p>
+   </article>
+
+  </div>
+ </div>
+</section>
+
+
+<!-- VENUE -->
+
+<section>
+ <div class="wrap">
+
+  <h2 class="section-title">शुभ अवसर का स्थान</h2>
+  <p class="sub">आपकी उपस्थिति हमारे लिए सौभाग्य होगी</p>
+
+  <div class="card venue">
+   <div class="pin">⌖</div>
+
+   <strong>समस्त वैवाहिक कार्यक्रम</strong><br>
+   हमारे निवास स्थान<br>
+   <strong>ग्राम — बेलवा दूबे</strong><br>
+   पोस्ट — बगही बाजार, थाना — कटेया<br>
+   जिला — गोपालगंज, बिहार
+
+  </div>
+ </div>
+</section>
+
+
+<!-- FAMILY INVITATION -->
+
+<section style="background:#efe1ca">
+ <div class="wrap">
+
+  <h2 class="section-title">स्नेहिल आमंत्रण</h2>
+
+  <p class="sub">
+   शुभ विवाह में पधारकर वर-वधू को अपना
+   आशीर्वाद प्रदान करें
+  </p>
+
+  <div class="family">
+
+   <div class="card">
+    <h3>प्रेषक</h3>
+    <p>
+     <strong>श्री राजेश शर्मा</strong><br>
+     ग्राम — बेलवा दूबे, पोस्ट — बगही बाजार<br>
+     थाना — कटेया, जिला — गोपालगंज<br>
+     मोबाइल: 9162617704
+    </p>
+   </div>
+
+   <div class="card">
+    <h3>स्वागतकर्ता</h3>
+    <p>
+     <strong>हरिकेश शर्मा</strong><br>
+     मोबाइल: 8292159800
+    </p>
+   </div>
+
+   <div class="card">
+    <h3>दर्शनाभिलाषी</h3>
+    <p>
+     अखिलेश शर्मा, आशीष शर्मा, आर्यन शर्मा,<br>
+     अनिकेत शर्मा, केशव शर्मा एवं समस्त<br>
+     परिवार व मित्रगण
+    </p>
+   </div>
+
+   <div class="card">
+    <h3>आकांक्षी</h3>
+    <p>
+     <strong>श्री राजेश शर्मा</strong><br>
+     एवं समस्त शर्मा परिवार
+    </p>
+   </div>
+
+  </div>
+ </div>
+</section>
+
+
+<!-- MUSIC PLAYER -->
+
+<div class="music-control">
+ <button id="musicBtn" type="button" aria-pressed="false">
+  <span id="musicIcon">♫</span>
+  <span id="musicLabel">संगीत सुनें</span>
+ </button>
+
+ <span class="music-note">शहनाई • मंगल धुन</span>
+</div>
+
+<div id="musicPlayer" class="music-player">
+ <iframe
+  id="weddingMusic"
+  title="Traditional wedding shehnai instrumental"
+  src="https://www.youtube-nocookie.com/embed/GccTghNUsmE?enablejsapi=1"
+  allow="autoplay; encrypted-media">
+ </iframe>
+</div>
+
+
+<!-- WEDDING COUNTDOWN -->
+
+<div class="count">
+
+ <h2>मंगल मिलन तक</h2>
+ <p>30 नवम्बर 2026 • सोमवार</p>
+
+ <div class="timer" aria-live="polite">
+
+  <div class="unit">
+   <b id="days">--</b>
+   <span>दिन</span>
+  </div>
+
+  <div class="unit">
+   <b id="hours">--</b>
+   <span>घंटे</span>
+  </div>
+
+  <div class="unit">
+   <b id="minutes">--</b>
+   <span>मिनट</span>
+  </div>
+
+  <div class="unit">
+   <b id="seconds">--</b>
+   <span>सेकंड</span>
+  </div>
+
+ </div>
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+ ॥ श्री गणेशाय नमः ॥<br>
+
+ आपका स्नेह एवं आशीर्वाद ही हमारा
+ सबसे बड़ा उपहार है।<br>
+
+ <strong>अर्पिता संग रूपेश</strong>
+ • शुभ विवाह 2026
+</footer>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+// Wedding date countdown
+
+const target = new Date(
+ '2026-11-30T00:00:00+05:30'
+).getTime();
+
+function tick(){
+
+ const diff = target - Date.now();
+
+ if(diff <= 0){
+  document.querySelector('.timer').innerHTML =
+   '<strong>आज शुभ विवाह का मंगल दिवस है! 💐</strong>';
+  return;
+ }
+
+ const vals = {
+  days: Math.floor(diff / 86400000),
+  hours: Math.floor(diff % 86400000 / 3600000),
+  minutes: Math.floor(diff % 3600000 / 60000),
+  seconds: Math.floor(diff % 60000 / 1000)
+ };
+
+ Object.entries(vals).forEach(([key,value]) => {
+  document.getElementById(key).textContent =
+   String(value).padStart(2,'0');
+ });
+
+}
+
+tick();
+setInterval(tick,1000);
+
+
+// Music Play / Pause
+
+const musicBtn = document.getElementById('musicBtn');
+const musicFrame = document.getElementById('weddingMusic');
+
+let musicPlaying = false;
+
+musicBtn.addEventListener('click', () => {
+
+ document.getElementById('musicPlayer')
+  .classList.add('open');
+
+ const command = musicPlaying
+  ? 'pauseVideo'
+  : 'playVideo';
+
+ musicFrame.contentWindow.postMessage(
+  JSON.stringify({
+   event:'command',
+   func:command,
+   args:[]
+  }),
+  '*'
+ );
+
+ musicPlaying = !musicPlaying;
+
+ musicBtn.setAttribute(
+  'aria-pressed',
+  String(musicPlaying)
+ );
+
+ document.getElementById('musicIcon').textContent =
+  musicPlaying ? 'Ⅱ' : '♫';
+
+ document.getElementById('musicLabel').textContent =
+  musicPlaying ? 'संगीत रोकें' : 'संगीत सुनें';
+
+});
+
+</script>
+
+</body>
+</html>
