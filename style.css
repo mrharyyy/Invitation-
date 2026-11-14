@@ -1050,20 +1050,23 @@ footer small {
   }
 
   .event-card {
-    gap: 15px;
-    padding: 20px 16px;
+    gap: 14px;
+    min-height: 138px;
+    padding: 28px 20px;
   }
 
   .event-card h3 {
-    font-size: 18px;
-  }
-
-  .event-number {
-    font-size: 22px;
+    font-size: 23px;
+    line-height: 1.5;
   }
 
   .event-date {
-    font-size: 10px;
+    font-size: 12px;
+    letter-spacing: .8px;
+  }
+
+  .event-flower {
+    font-size: 30px;
   }
 
   .gallery-grid {
