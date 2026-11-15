@@ -64,7 +64,31 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 });
 
 
-// 3. Reveal animations on scroll
+// 3. Original wedding invitation card show/hide
+const cardToggle = document.getElementById("cardToggle");
+const originalCardViewer = document.getElementById("originalCardViewer");
+
+if (cardToggle && originalCardViewer) {
+  cardToggle.addEventListener("click", () => {
+    const isOpening = originalCardViewer.hidden;
+
+    originalCardViewer.hidden = !isOpening;
+    cardToggle.setAttribute("aria-expanded", String(isOpening));
+
+    const label = cardToggle.firstChild;
+    if (label) {
+      label.textContent = isOpening
+        ? "मूल निमंत्रण पत्र छुपाएं "
+        : "मूल निमंत्रण पत्र देखें ";
+    }
+
+    const symbol = cardToggle.querySelector("span");
+    if (symbol) symbol.textContent = isOpening ? "−" : "＋";
+  });
+}
+
+
+// 4. Reveal animations on scroll
 const revealElements = document.querySelectorAll(".reveal");
 
 if ("IntersectionObserver" in window) {
@@ -89,7 +113,7 @@ if ("IntersectionObserver" in window) {
 }
 
 
-// 4. Back to top button
+// 5. Back to top button
 const backTop = document.getElementById("backTop");
 
 if (backTop) {
