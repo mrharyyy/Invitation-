@@ -305,6 +305,70 @@ a {
   font-size: 20px;
 }
 
+/* ORIGINAL WEDDING CARD TOGGLE */
+
+.card-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 12px 22px;
+  border: 1px solid var(--gold);
+  background: rgba(255, 250, 241, .82);
+  color: var(--burgundy);
+  font: 14px "Tiro Devanagari Hindi", serif;
+  cursor: pointer;
+  transition: background .25s ease, color .25s ease, transform .25s ease;
+  touch-action: manipulation;
+}
+
+.card-toggle:hover {
+  background: var(--burgundy-light);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.card-toggle span {
+  color: var(--gold);
+  font: 20px "DM Sans", sans-serif;
+  line-height: 1;
+}
+
+.original-card-viewer {
+  width: min(100%, 760px);
+  margin: 26px auto 0;
+  display: grid;
+  gap: 22px;
+}
+
+.original-card-viewer[hidden] {
+  display: none !important;
+}
+
+.original-card-page {
+  margin: 0;
+  padding: 12px;
+  background: var(--white);
+  border: 1px solid var(--gold-light);
+  box-shadow: var(--shadow);
+}
+
+.original-card-page figcaption {
+  padding: 5px 8px 12px;
+  color: var(--gold);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.original-card-page img {
+  display: block;
+  width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  background: var(--cream-dark);
+}
+
 .hero-photo {
   width: min(100%, 620px);
   margin-top: 75px;
