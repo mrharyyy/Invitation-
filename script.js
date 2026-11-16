@@ -128,3 +128,53 @@ if (backTop) {
     });
   });
 }
+
+
+// 6. Background wedding music with mute / unmute only
+const weddingMusic = document.getElementById("weddingMusic");
+const musicToggle = document.getElementById("musicToggle");
+const musicToggleLabel = document.getElementById("musicToggleLabel");
+
+if (weddingMusic && musicToggle && musicToggleLabel) {
+  weddingMusic.volume = 0.65;
+
+  const updateMusicButton = (isPlaying) => {
+    musicToggleLabel.textContent = isPlaying
+      ? (weddingMusic.muted ? "ध्वनि चालू करें" : "म्यूट करें")
+      : "ध्वनि चालू करें";
+    musicToggle.setAttribute("aria-label", musicToggleLabel.textContent);
+    musicToggle.setAttribute("aria-pressed", String(isPlaying && !weddingMusic.muted));
+    musicToggle.classList.toggle("is-playing", isPlaying && !weddingMusic.muted);
+  };
+
+  const tryStartMusic = async () => {
+    try {
+      await weddingMusic.play();
+      updateMusicButton(true);
+    } catch (error) {
+      // Browsers may block audible autoplay until the visitor interacts.
+      weddingMusic.muted = true;
+      updateMusicButton(false);
+    }
+  };
+
+  tryStartMusic();
+
+  musicToggle.addEventListener("click", async () => {
+    if (weddingMusic.paused) {
+      weddingMusic.muted = false;
+      try {
+        await weddingMusic.play();
+      } catch (error) {
+        weddingMusic.muted = true;
+      }
+    } else {
+      weddingMusic.muted = !weddingMusic.muted;
+    }
+    updateMusicButton(!weddingMusic.paused);
+  });
+
+  weddingMusic.addEventListener("play", () => updateMusicButton(true));
+  weddingMusic.addEventListener("pause", () => updateMusicButton(false));
+}
+
