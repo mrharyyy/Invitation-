@@ -1208,3 +1208,44 @@ footer small {
 .original-card-page img {
   border: 0;
 }
+
+
+/* BACKGROUND MUSIC MUTE / UNMUTE */
+.music-toggle {
+  position: fixed;
+  left: 20px;
+  bottom: 22px;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 0 17px;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: rgba(50, 19, 30, .94);
+  color: var(--gold-light);
+  box-shadow: 0 8px 24px rgba(35, 12, 20, .2);
+  font: 600 12px "DM Sans", sans-serif;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.music-toggle > span:first-child {
+  font-size: 19px;
+  line-height: 1;
+}
+.music-toggle.is-playing > span:first-child {
+  animation: musicPulse 1.4s ease-in-out infinite;
+}
+@keyframes musicPulse {
+  0%, 100% { transform: scale(1); opacity: .8; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+@media (max-width: 650px) {
+  .music-toggle {
+    left: 13px;
+    bottom: 16px;
+    min-height: 43px;
+    padding: 0 14px;
+  }
+}
