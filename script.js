@@ -137,28 +137,48 @@ const musicToggleLabel = document.getElementById("musicToggleLabel");
 
 if (weddingMusic && musicToggle && musicToggleLabel) {
   weddingMusic.volume = 0.65;
+  weddingMusic.muted = false;
 
-  const updateMusicButton = (isPlaying) => {
-    musicToggleLabel.textContent = isPlaying
-      ? (weddingMusic.muted ? "ध्वनि चालू करें" : "म्यूट करें")
-      : "ध्वनि चालू करें";
+  const updateMusicButton = () => {
+    const audible = !weddingMusic.paused && !weddingMusic.muted;
+    musicToggleLabel.textContent = audible ? "म्यूट करें" : "ध्वनि चालू करें";
     musicToggle.setAttribute("aria-label", musicToggleLabel.textContent);
-    musicToggle.setAttribute("aria-pressed", String(isPlaying && !weddingMusic.muted));
-    musicToggle.classList.toggle("is-playing", isPlaying && !weddingMusic.muted);
+    musicToggle.setAttribute("aria-pressed", String(audible));
+    musicToggle.classList.toggle("is-playing", audible);
   };
 
-  const tryStartMusic = async () => {
+  const startMusic = async () => {
     try {
       await weddingMusic.play();
-      updateMusicButton(true);
     } catch (error) {
-      // Browsers may block audible autoplay until the visitor interacts.
-      weddingMusic.muted = true;
-      updateMusicButton(false);
+      // Audible autoplay can be blocked by mobile browser policies.
+    }
+    updateMusicButton();
+  };
+
+  // Make an audible autoplay attempt as soon as the page script runs.
+  startMusic();
+
+  // If autoplay is blocked, start with sound on the visitor's first interaction
+  // anywhere on the page (not only when they press the music button).
+  const startAfterInteraction = async () => {
+    if (weddingMusic.paused) {
+      weddingMusic.muted = false;
+      try {
+        await weddingMusic.play();
+      } catch (error) {
+        // Keep the dedicated music button available as a fallback.
+      }
+    }
+    updateMusicButton();
+    if (!weddingMusic.paused && !weddingMusic.muted) {
+      document.removeEventListener("pointerdown", startAfterInteraction);
+      document.removeEventListener("keydown", startAfterInteraction);
     }
   };
 
-  tryStartMusic();
+  document.addEventListener("pointerdown", startAfterInteraction);
+  document.addEventListener("keydown", startAfterInteraction);
 
   musicToggle.addEventListener("click", async () => {
     if (weddingMusic.paused) {
@@ -166,15 +186,15 @@ if (weddingMusic && musicToggle && musicToggleLabel) {
       try {
         await weddingMusic.play();
       } catch (error) {
-        weddingMusic.muted = true;
+        // Browser prevented playback; button remains available for another try.
       }
     } else {
       weddingMusic.muted = !weddingMusic.muted;
     }
-    updateMusicButton(!weddingMusic.paused);
+    updateMusicButton();
   });
 
-  weddingMusic.addEventListener("play", () => updateMusicButton(true));
-  weddingMusic.addEventListener("pause", () => updateMusicButton(false));
+  weddingMusic.addEventListener("play", updateMusicButton);
+  weddingMusic.addEventListener("pause", updateMusicButton);
+  weddingMusic.addEventListener("volumechange", updateMusicButton);
 }
-
